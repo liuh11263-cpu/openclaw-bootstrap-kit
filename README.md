@@ -1,6 +1,11 @@
 # OpenClaw Bootstrap Kit (Shareable)
 
-一键安装 + 可重复配置 + 健康检查，用于在新 macOS 机器上快速落地 OpenClaw。
+一键安装 + 可重复配置 + 健康检查，用于在新机器上快速落地 OpenClaw。
+
+## 平台支持（很重要）
+- ✅ **macOS（当前已支持）**：本仓库脚本默认按 macOS + Homebrew 编写。
+- ⚠️ **Windows（当前未原生支持）**：不能直接跑这套脚本；需单独做 PowerShell 版本，或在 WSL 中改造后使用。
+- ⚠️ **Linux（当前未验证）**：理论可移植，但依赖安装与路径需要单独适配。
 
 ## 目标
 - 5~10 分钟完成基础可用环境
