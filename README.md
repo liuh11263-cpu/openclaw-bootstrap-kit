@@ -12,27 +12,65 @@
 - 配置可重复执行（idempotent）
 - 默认安全基线（本地回环、占位 token、不落敏感信息）
 
-## 快速开始
+## 快速开始（傻瓜版）
 
-### macOS
+> 你报的这个错本质是：还没在仓库目录里执行命令。
+> 正确写法是：`cp .env.example .env`（中间有空格），不是 `cp.env.example.env`。
+
+### 0) 先下载仓库
+
+#### macOS / Linux
+```bash
+git clone https://github.com/liuh11263-cpu/openclaw-bootstrap-kit.git
+cd openclaw-bootstrap-kit
+ls -la   # 看到 .env.example 才是正确目录
+```
+
+#### Windows (PowerShell)
+```powershell
+git clone https://github.com/liuh11263-cpu/openclaw-bootstrap-kit.git
+cd .\openclaw-bootstrap-kit
+Get-ChildItem -Force   # 看到 .env.example 才是正确目录
+```
+
+### 1) 复制环境变量模板
+
+#### macOS
 ```bash
 cp .env.example .env
-# 编辑 .env，填入你的密钥与参数
+```
 
+#### Windows (PowerShell)
+```powershell
+Copy-Item .env.example .env
+```
+
+### 2) 编辑 `.env`
+填入你的 token / chatId / 模型等配置。
+
+### 3) 执行安装 + 配置 + 自检
+
+#### macOS
+```bash
 bash setup/openclaw-bootstrap.sh
 bash setup/openclaw-configure.sh
 bash setup/openclaw-doctor.sh
 ```
 
-### Windows (PowerShell)
+#### Windows (PowerShell)
 ```powershell
-Copy-Item .env.example .env
-# 编辑 .env，填入你的密钥与参数
-
 powershell -ExecutionPolicy Bypass -File .\setup\windows\openclaw-bootstrap.ps1
 powershell -ExecutionPolicy Bypass -File .\setup\windows\openclaw-configure.ps1
 powershell -ExecutionPolicy Bypass -File .\setup\windows\openclaw-doctor.ps1
 ```
+
+### 4) 常见报错（必看）
+- `No such file or directory: .env.example`
+  - 你不在仓库目录；先 `cd openclaw-bootstrap-kit`
+- `cp.env.example.env: command not found`
+  - 命令写错了，正确是 `cp .env.example .env`
+- `openclaw: command not found`
+  - 先重开终端，或检查 Node/npm 全局路径是否生效
 
 ## 文件结构
 - `setup/openclaw-bootstrap.sh`：macOS 安装依赖与基础目录
